@@ -1,6 +1,5 @@
 package com.galvanize.opentrivia.it.controller;
 
-import org.h2.util.json.JSONString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,6 +29,14 @@ public class TriviaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(0)));
 
+    }
+
+    @Test
+    void getTriviaQuestionById_returnQuestion200() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/triviaqustions/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.question").value("What did Yankee Doodle stick in his cap?"));
 
     }
 }
