@@ -52,6 +52,18 @@ public class TriviaControllerTest {
     }
 
     @Test
+    void getTriviaQuestionById_returnQuestionWithAnswers200_boundary() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(3))
+                .andExpect(jsonPath("$.answers",hasSize(3)))
+                .andExpect(jsonPath("$.answers.[0].text").value("Gone with the Wind"))
+                .andExpect(jsonPath("$.answers.[1].text").value("Toy Story 2"))
+                .andExpect(jsonPath("$.answers.[2].text").value("Toy Story"));
+
+    }
+
+    @Test
     void getTriviaQuestionById_returnQuestionNotFound404() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/0"))
                 .andExpect(status().isNotFound())

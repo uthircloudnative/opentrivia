@@ -23,7 +23,7 @@ public class Answer {
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JsonBackReference
-    @JoinColumn(name="quiz_id",nullable = false)
+    @JoinColumn(name="question_id",nullable = false)
     private Question question;
 
     @Column(name = "choice")
