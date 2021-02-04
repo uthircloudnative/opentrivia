@@ -40,4 +40,14 @@ public class TriviaControllerTest {
                 .andExpect(jsonPath("$.question").value("What did Yankee Doodle stick in his cap?"));
 
     }
+
+    @Test
+    void getTriviaQuestionById_returnQuestionWithAnswers200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/triviaqustions/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.answers",hasSize(3)))
+                .andExpect(jsonPath("$.answers.[0].text").value("Feather"));
+
+    }
 }
