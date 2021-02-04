@@ -4,6 +4,7 @@ import com.galvanize.opentrivia.entity.Question;
 import com.galvanize.opentrivia.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,5 +19,9 @@ public class TriviaService {
     public Question getTriviaQuestionById(String questionId){
         Optional<Question> questionOpt = questionRepository.findById(Long.valueOf(questionId));
         return questionOpt.get();
+    }
+
+    public List<Question> getTriviaQuestions() {
+        return questionRepository.findAll();
     }
 }
