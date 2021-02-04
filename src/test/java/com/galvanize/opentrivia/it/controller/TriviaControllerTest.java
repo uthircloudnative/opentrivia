@@ -24,15 +24,15 @@ public class TriviaControllerTest {
 
     @Test
     void getTriviaQuestions_returnsEmptyQuestions200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/triviaqustions"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(1)));
+                .andExpect(jsonPath("$",hasSize(3)));
 
     }
 
     @Test
     void getTriviaQuestionById_returnQuestion200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/triviaqustions/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.quizId").value(1))
@@ -43,11 +43,22 @@ public class TriviaControllerTest {
 
     @Test
     void getTriviaQuestionById_returnQuestionWithAnswers200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/triviaqustions/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.answers",hasSize(3)))
                 .andExpect(jsonPath("$.answers.[0].text").value("Feather"));
 
     }
+
+    @Test
+    void getTriviaQuestionById_returnQuestionNotFound404() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/0"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.errorMsg").value("No Such Question Found"))
+        ;
+                //.andExpect(jsonPath("$.id").value(1))
+
+    }
+
 }

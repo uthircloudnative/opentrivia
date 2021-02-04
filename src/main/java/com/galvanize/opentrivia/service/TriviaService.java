@@ -1,6 +1,7 @@
 package com.galvanize.opentrivia.service;
 
 import com.galvanize.opentrivia.entity.Question;
+import com.galvanize.opentrivia.exception.TriviaException;
 import com.galvanize.opentrivia.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,11 @@ public class TriviaService {
         this.questionRepository = questionRepository;
     }
 
-    public Question getTriviaQuestionById(String questionId){
+    public Question getTriviaQuestionById(String questionId) throws TriviaException {
         Optional<Question> questionOpt = questionRepository.findById(Long.valueOf(questionId));
+        if(questionOpt.isEmpty()){
+            throw new TriviaException("No Such Question Found");
+        }
         return questionOpt.get();
     }
 
