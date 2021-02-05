@@ -17,8 +17,8 @@ public class TriviaService {
         this.questionRepository = questionRepository;
     }
 
-    public Question getTriviaQuestionById(String questionId) throws TriviaException {
-        Optional<Question> questionOpt = questionRepository.findById(Long.valueOf(questionId));
+    public Question getTriviaQuestionById(Long questionId) throws TriviaException {
+        Optional<Question> questionOpt = questionRepository.findById(questionId);
         if(questionOpt.isEmpty()){
             throw new TriviaException("No Such Question Found");
         }

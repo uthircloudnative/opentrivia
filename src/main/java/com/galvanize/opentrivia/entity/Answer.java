@@ -17,7 +17,7 @@ public class Answer {
 
     //id, question_id, choice, text, correct
     @Id
-    //@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 

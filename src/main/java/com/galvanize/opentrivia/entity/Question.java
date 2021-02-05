@@ -18,7 +18,7 @@ import java.util.List;
 public class Question {
 
     @Id
-    //@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 

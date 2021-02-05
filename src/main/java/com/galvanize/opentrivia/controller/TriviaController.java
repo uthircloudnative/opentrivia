@@ -25,7 +25,7 @@ public class TriviaController {
     }
 
     @GetMapping("/api/v1/trivia-questions/{questionid}")
-    public Question getTriviaQuestionById(@PathVariable(name="questionid") String questionId) throws Exception {
+    public Question getTriviaQuestionById(@PathVariable(name="questionid") Long questionId) throws Exception {
         return triviaService.getTriviaQuestionById(questionId);
     }
 

@@ -23,7 +23,7 @@ public class TriviaControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void getTriviaQuestions_returnsEmptyQuestions200() throws Exception {
+    void getTriviaQuestions_returns3Questions200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(3)));
