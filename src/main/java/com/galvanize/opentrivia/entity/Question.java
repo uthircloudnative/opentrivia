@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@Entity(name = "question")
 @Entity
 @Table(name = "question")
 public class Question {
@@ -31,8 +32,8 @@ public class Question {
     @Column(name = "question")
     private String question;
 
-    @Column(name = "created_at")
-    private Timestamp created_at;
+//    @Column(name = "created_at")
+//    private Timestamp created_at;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch=FetchType.LAZY)

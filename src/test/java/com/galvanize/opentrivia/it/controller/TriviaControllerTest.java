@@ -2,6 +2,7 @@ package com.galvanize.opentrivia.it.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -26,7 +27,7 @@ public class TriviaControllerTest {
     void getTriviaQuestions_returns3Questions200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(3)));
+                .andExpect(jsonPath("$",hasSize(1)));
 
     }
 
@@ -53,13 +54,13 @@ public class TriviaControllerTest {
 
     @Test
     void getTriviaQuestionById_returnQuestionWithAnswers200_boundary() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/3"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trivia-questions/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(3))
+                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.answers",hasSize(3)))
-                .andExpect(jsonPath("$.answers.[0].text").value("Gone with the Wind"))
-                .andExpect(jsonPath("$.answers.[1].text").value("Toy Story 2"))
-                .andExpect(jsonPath("$.answers.[2].text").value("Toy Story"));
+                .andExpect(jsonPath("$.answers.[0].text").value("Feather"))
+                .andExpect(jsonPath("$.answers.[1].text").value("Noodle soup"))
+                .andExpect(jsonPath("$.answers.[2].text").value("Duck"));
 
     }
 

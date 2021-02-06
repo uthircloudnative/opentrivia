@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@Entity(name = "answer")
 @Entity
 @Table(name = "answer")
 public class Answer {
